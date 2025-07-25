@@ -20,13 +20,14 @@ app.use(express.json());
 // check api is working or not
 app.get("/api/health", (req, res) => {
     res.status(200).json({ status: "Ok" });
+    console.log("working", process.env.NODE_ENV);
 })
 
 // custom middleware
-app.use((req, res, next) => {
-    console.log("Hey we hit a req, the method is ", req.method);
-    next();
-})
+// app.use((req, res, next) => {
+//     console.log("Hey we hit a req, the method is ", req.method);
+//     next();
+// })
 
 app.use("/api/transactions", transactionsRoute)
 
