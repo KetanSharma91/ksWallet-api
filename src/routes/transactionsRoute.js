@@ -5,7 +5,7 @@ import { createTransaction, deleteTransaction, getSummaryByUserId, getTransactio
 const router = express.Router();
 
 // get transactions of user
-router.get("/:userId", getTransactionsByUserid);
+router.get("/:userId/:sheetId", getTransactionsByUserid);
 
 // enter the transactions
 router.post("/add", createTransaction);
@@ -14,6 +14,6 @@ router.post("/add", createTransaction);
 router.delete("/delete/:id", deleteTransaction);
 
 // get transactions summary
-router.get("/summary/:userId", getSummaryByUserId);
+router.get("/summary/:userId/:sheetId", getSummaryByUserId);
 
 export default router;
