@@ -48,7 +48,8 @@ export async function deleteSheet(req, res) {
         }
 
         const result = await sql`
-        DELETE FROM balancesheet WHERE id = ${id} RETURNING *
+        DELETE FROM transactions Where sheetid = ${id}; 
+        DELETE FROM balancesheet WHERE id = ${id} RETURNING *;
         `;
 
         if (result.length === 0) {
