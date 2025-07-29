@@ -47,12 +47,15 @@ export async function deleteSheet(req, res) {
             return res.status(400).json({ message: "Invaild Sheet id" })
         }
 
+        const deleteTransactions = await sql`
+        DELETE FROM transactions WHERE sheetid = ${id}
+        `;
+
         const result = await sql`
-        DELETE FROM transactions Where sheetid = ${id}; 
         DELETE FROM balancesheet WHERE id = ${id} RETURNING *;
         `;
 
-        if (result.length === 0) {
+        if (result.length === 0 && deleteTransactions.length === 0) {
             return res.status(404).json({ message: "Sheet not found" });
         }
 
