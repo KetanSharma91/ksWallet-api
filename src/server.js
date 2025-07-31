@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import rateLimiter from "./middleware/rateLimiter.js";
 
+import rydeRoute from "./Ryde/rydeRoute.js"
+
 import transactionsRoute from "./routes/transactionsRoute.js"
 import balanceSheetsRoute from "./routes/balanceSheetsRoute.js"
 import { initDB } from "./config/db.js";
@@ -32,6 +34,7 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/transactions", transactionsRoute);
 app.use("/api/sheets", balanceSheetsRoute);
+app.use("/api/ryde", rydeRoute);
 
 initDB().then(() => {
     app.listen(PORT, () => {
