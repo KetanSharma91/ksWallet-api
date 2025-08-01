@@ -1,6 +1,7 @@
 import express from "express";
 import { addUser, getDrivers, getFood } from "./userController.js";
 import { addRide, getRidesByUserid } from "./ridesController.js";
+import { createTransaction, paytransaction } from "./stripeController.js";
 
 const router = express.Router();
 
@@ -19,6 +20,7 @@ router.get("/rides/:userId", getRidesByUserid);
 router.get("/food", getFood);
 
 // add the transaction
-// router.post("/transaction/add", addTransaction);
+router.post("/transaction/pay", paytransaction);
+router.post("/transaction/create", createTransaction);
 
 export default router;
